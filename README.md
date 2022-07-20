@@ -16,8 +16,6 @@
 
 </div>
 
-
-_____
 _____
 
 ## Proyecto de Sitio Web para una tienda de muebles 
@@ -52,7 +50,12 @@ Nomenclatura para la estructuración de la base de datos
 1. **Campos** --> Minuscula 
 2. **Tablas** --> Mayuscula
 3. **Base de datos** --> Letra capital en mayuscula
-4. **Palabras compuestas** --> CamelCase
+
+Configuración de PostgreSQL local
+1. **Host** --> localhost
+2. **User Name** --> postgres
+3. **Password** --> admin
+4. **Port** --> 5432 
 ### Backend
 
 ### Frontend
