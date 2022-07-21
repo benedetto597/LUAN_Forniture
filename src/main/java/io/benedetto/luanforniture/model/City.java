@@ -1,5 +1,8 @@
 package io.benedetto.luanforniture.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -14,13 +17,16 @@ import javax.validation.constraints.Size;
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int city_id;
 
     @NotBlank
-    @Size(max = 50)
+    @Size(max = 30)
     @NotNull
     private String city_name;
     
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Suburb> suburbia = new HashSet<>();
+
     public City() {}
 
     public City(String city_name) {
@@ -28,11 +34,11 @@ public class City {
     }
 
     public int getId() {
-        return id;
+        return city_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int city_id) {
+        this.city_id = city_id;
     }
 
     public String getCity_name() {
@@ -45,6 +51,6 @@ public class City {
 
     @Override
     public String toString() {
-        return "City{" + "id=" + id + ", city_name=" + city_name + '}';
+        return "City{" + "id=" + city_id + ", city_name=" + city_name + '}';
     }
 }

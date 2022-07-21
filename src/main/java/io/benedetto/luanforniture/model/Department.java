@@ -12,45 +12,49 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "DEPARTMENT", 
     uniqueConstraints = {
-        @UniqueConstraint(columnNames = "departament_name"),
+        @UniqueConstraint(columnNames = "name"),
     })
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int department_id;
 
     @NotBlank
-    @Size(max = 40)
+    @Size(max = 20)
     @NotNull
-    private String departament_name;
+    private String name;
+
+    @OneToOne
+	@JoinColumn(name = "city_id")
+	private City capital_name;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<City> cities = new HashSet<>();
 
     public Department() {}
 
-    public Department(String departament_name) {
-        this.departament_name = departament_name;
+    public Department(String name) {
+        this.name = name;
     }
 
     public int getId() {
-        return id;
+        return department_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int department_id) {
+        this.department_id = department_id;
     }
 
-    public String getDepartament_name() {
-        return departament_name;
+    public String getName() {
+        return name;
     }
 
-    public void setDepartament_name(String departament_name) {
-        this.departament_name = departament_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
-        return "Department{" + "id=" + id + ", departament_name=" + departament_name + '}';
+        return "Department{" + "id=" + department_id + ", name=" + name + '}';
     }
 }

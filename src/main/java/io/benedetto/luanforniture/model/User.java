@@ -18,7 +18,7 @@ public class User {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int user_id;
 
     @NotBlank
     @Size(max = 20)
@@ -59,11 +59,11 @@ public class User {
     }
 
     public int getId() {
-        return id;
+        return user_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getUsername() {
@@ -112,5 +112,10 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + user_id + ", username=" + user_name + ", name=" + name + ", last_name=" + last_name + ", email=" + email + ", password=" + password + '}';
     }
 }

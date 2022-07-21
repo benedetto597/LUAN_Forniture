@@ -2,8 +2,8 @@
     <img src="https://www.armadilloamarillo.com/wp-content/uploads/spring-boot-ok.png" width=400px"> </img> 
     
 <!-- Encabezado -->
-## Prueba técnica | Productos por departamento
-## Junio 2022
+## Aplicacion web de venta de muebles
+## Julio 2022
 ### Autores
 
 | Nombre | Identidad | Correo |
@@ -60,35 +60,3 @@ Configuración de PostgreSQL local
 
 ### Frontend
 ## Deploy en Heroku
-1. Crear un backup de la base de datos
-2. Instalar clearDB Mysql
-  ```
-  heroku addons:create cleardb:ignite
-  ```
-2. Imprimir las variables de entorno 
-  ```
-  heroku run -a productsbydepartment printenv
-
-  PORT=14953
-  SPRING_DATASOURCE_USERNAME=b4bf7af203d414
-  SPRING_DATASOURCE_URL=jdbc:mysql://us-cdbr-east-05.cleardb.net/heroku_935f7825dc6b73b?password=e6b9865c&reconnect=true&user=b4bf7af203d414
-  CLEARDB_DATABASE_URL=mysql://b4bf7af203d414:e6b9865c@us-cdbr-east-05.cleardb.net/heroku_935f7825dc6b73b?reconnect=true
-  TERM=xterm
-  JDBC_DATABASE_PASSWORD=e6b9865c
-  JDBC_DATABASE_USERNAME=b4bf7af203d414
-  SHLVL=0
-  LD_LIBRARY_PATH=/app/.jdk/jre/lib/amd64/server:
-  PS1=\[\033[01;34m\]\w\[\033[00m\] \[\033[01;32m\]$ \[\033[00m\]
-  SPRING_DATASOURCE_PASSWORD=e6b9865c
-  PATH=/app/.heroku/bin:/app/.jdk/bin:/usr/local/bin:/usr/bin:/bin
-  DYNO=run.5617
-  _=/usr/bin/printenv
-  ```
-3. Conectarse a la base de datos MySQL remota de Heroku
-  ```
-  mysql -u b4bf7af203d414 -pe6b9865c -h us-cdbr-east-05.cleardb.net
-
-  pass: e6b9865c
-
-  connect heroku_935f7825dc6b73b;
-  ```
