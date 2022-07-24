@@ -1,4 +1,4 @@
-package io.benedetto.luanforniture.model;
+package io.benedetto.luanforniture.model.address;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -24,7 +24,10 @@ public class City {
     @NotNull
     private String city_name;
     
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinTable(name = "CITY_SUBURBIA", 
+               joinColumns = @JoinColumn(name = "city_id"),
+               inverseJoinColumns = @JoinColumn(name = "suburb_id"))
     private Set<Suburb> suburbia = new HashSet<>();
 
     public City() {}

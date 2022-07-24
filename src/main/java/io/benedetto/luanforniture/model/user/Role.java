@@ -1,6 +1,7 @@
-package io.benedetto.luanforniture.model;
+package io.benedetto.luanforniture.model.user;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "ROLE")
@@ -10,7 +11,7 @@ public class Role {
   private Integer role_id;
 
   @Enumerated(EnumType.STRING)
-  @Column(length = 20)
+  @Size(max = 20)
   private ERole name;
   
   public Role() {
@@ -25,7 +26,7 @@ public class Role {
     this.role_id = role_id;
   }
   public ERole getName() {
-    return role_name;
+    return name;
   }
   public void setName(ERole name) {
     this.name = name;

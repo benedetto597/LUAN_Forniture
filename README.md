@@ -50,6 +50,7 @@ Nomenclatura para la estructuración de la base de datos
 1. **Campos** --> Minuscula 
 2. **Tablas** --> Mayuscula
 3. **Base de datos** --> Letra capital en mayuscula
+4. **Tablas principales** --> Nombres en Plural
 
 Configuración de PostgreSQL local
 1. **Host** --> localhost
@@ -57,6 +58,12 @@ Configuración de PostgreSQL local
 3. **Password** --> admin
 4. **Port** --> 5432 
 ### Backend
+Recomendaciones de uso segun documentacion oficial:
+* Para colecciones unidireccionales, los **conjuntos o Set (HashSet<>)** son la mejor opción porque generan las **declaraciones SQL más eficientes**. Las **listas o List** unidireccionales son **menos eficientes** que una asociación @ManyToOne.
+* En resumen **mappedBy** define el objeto al que pertenece la relación y es obligatorio si la relación es bidireccional.  Por lo que hace que no solo se pueda acceder a la información del usuarios desde el email, sino que también podamos hacerlo en sentido contrario. Exista o no exista la definición expresa del @JoinColumn.
+
+1. Tipos de muebles
+Alacena,Cabecera,Cama cuna,Cuna,Centro,Chifonier,Chinero,Closet,Comedor,Cómoda,Gavetero,Litera,Mueble aereo,Recamara,Ropero
 
 ### Frontend
 ## Deploy en Heroku

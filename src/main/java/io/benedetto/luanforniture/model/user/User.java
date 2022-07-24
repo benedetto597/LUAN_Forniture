@@ -1,5 +1,6 @@
-package io.benedetto.luanforniture.model;
+package io.benedetto.luanforniture.model.user;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -7,6 +8,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "USER", 
@@ -42,6 +46,14 @@ public class User {
     @Size(max = 120)
     private String password;
 
+    @CreationTimestamp
+    // @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime created_on;
+
+    @UpdateTimestamp
+    // @Temporal(TemporalType.TIMESTAMP)
+	private LocalDateTime updated_on;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "USER_ROLES", 
                joinColumns = @JoinColumn(name = "user_id"),
@@ -50,27 +62,29 @@ public class User {
 
     public User() {}
 
-    public User(String name, String user_name, String last_name, String email, String password) {
+    public User(String name, String user_name, String last_name, String email, String password, LocalDateTime created_on, LocalDateTime updated_on) {
         this.name = name;
         this.user_name = user_name;
         this.last_name = last_name;
         this.email = email;
         this.password = password;
+        this.created_on = created_on;
+        this.updated_on = updated_on;
     }
 
-    public int getId() {
+    public int getUser_id() {
         return user_id;
     }
 
-    public void setId(int user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 
-    public String getUsername() {
+    public String getUser_name() {
         return user_name;
     }
 
-    public void setUsername(String user_name) {
+    public void setUser_name(String user_name) {
         this.user_name = user_name;
     }
 
@@ -106,6 +120,22 @@ public class User {
         this.password = password;
     }
 
+    public LocalDateTime getCreated_on() {
+        return created_on;
+    }
+
+    public void setCreated_on(LocalDateTime created_on) {
+        this.created_on = created_on;
+    }
+
+    public LocalDateTime getUpdated_on() {
+        return updated_on;
+    }
+
+    public void setUpdated_on(LocalDateTime updated_on) {
+        this.updated_on = updated_on;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }
@@ -116,6 +146,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + user_id + ", username=" + user_name + ", name=" + name + ", last_name=" + last_name + ", email=" + email + ", password=" + password + '}';
+        return "User [created_on=" + created_on + ", email=" + email + ", last_name=" + last_name + ", name=" + name
+                + ", password=" + password + ", roles=" + roles + ", updated_on=" + updated_on + ", user_id=" + user_id
+                + ", user_name=" + user_name + "]";
     }
+
+    
 }
