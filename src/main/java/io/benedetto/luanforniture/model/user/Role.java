@@ -16,9 +16,6 @@ public class Role {
   @Enumerated(EnumType.STRING)
   @Size(max = 20)
   private ERole name;
-
-  @ManyToMany(mappedBy = "roles")
-	private Set<User> users = new HashSet<>();
   
   public Role() {
   }
