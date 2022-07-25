@@ -12,6 +12,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import io.benedetto.luanforniture.model.sale_order.Order;
+
 @Entity
 @Table(name = "USER", 
     uniqueConstraints = {
@@ -54,11 +56,16 @@ public class User {
     // @Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime updated_on;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "USER_ROLES", 
-               joinColumns = @JoinColumn(name = "user_id"),
-               inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Role> roles = new HashSet<>();
+
+    @OneToMany(
+        mappedBy = "client",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true,
+        fetch = FetchType.LAZY
+    )
+    private Set<Order> orders = new HashSet<>();
 
     public User() {}
 

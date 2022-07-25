@@ -1,11 +1,16 @@
 package io.benedetto.luanforniture.model.forniture;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Formula;
+
+import io.benedetto.luanforniture.model.sale_order.Order_Item;
 
 @Entity
 @Table(name = "FORNITURES",
@@ -35,45 +40,46 @@ public class Fornitures {
 
     @NotBlank
     @NotNull
-    private Double list_price;
+    @Column(name = "list_price", precision = 10, scale = 2)
+    private Double listPrice;
 
     @Formula(value = "list_price * 0.20")
     private Double revenue;
 
     @Formula(value = "list_price + revenue")
-    private Double final_price;
+    @Column(name = "final_price")
+    private Double finalPrice;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Categories category;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cloth_id")
     private Clothes cloth;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dimension_id")
-    private Dimensions dimensions;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_item_id")
+    private Order_Item orderItem;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "style_id")
-    private Styles style;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy ="fornitures", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Dimensions> dimensions = new HashSet<>();
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "type_id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy ="fornitures", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Styles> styles = new HashSet<>();
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy ="fornitures", cascade = CascadeType.ALL, orphanRemoval = true)
     private Types type;
 
     public Fornitures() {}
     
-    public Fornitures(String name, String description, String code, Double list_price, Categories category, Clothes cloth, Dimensions dimensions, Styles style, Types type) {
+    public Fornitures(String name, String description, String code, Double listPrice, Categories category, Clothes cloth, Types type) {
         this.name = name;
         this.description = description;
         this.code = code;
-        this.list_price = list_price;
+        this.listPrice = listPrice;
         this.category = category;
         this.cloth = cloth;
-        this.dimensions = dimensions;
-        this.style = style;
         this.type = type;
     }
 
@@ -109,12 +115,12 @@ public class Fornitures {
         this.code = code;
     }
 
-    public Double getList_price() {
-        return list_price;
+    public Double getListPrice() {
+        return listPrice;
     }
 
-    public void setList_price(Double list_price) {
-        this.list_price = list_price;
+    public void setListPrice(Double listPrice) {
+        this.listPrice = listPrice;
     }
 
     public Double getRevenue() {
@@ -125,12 +131,12 @@ public class Fornitures {
         this.revenue = revenue;
     }
 
-    public Double getFinal_price() {
-        return final_price;
+    public Double getFinalPrice() {
+        return finalPrice;
     }
 
-    public void setFinal_price(Double final_price) {
-        this.final_price = final_price;
+    public void setFinalPrice(Double finalPrice) {
+        this.finalPrice = finalPrice;
     }
 
     public Categories getCategory() {
@@ -149,20 +155,28 @@ public class Fornitures {
         this.cloth = cloth;
     }
 
-    public Dimensions getDimensions() {
+    public Order_Item getOrderItem() {
+        return orderItem;
+    }
+
+    public void setOrderItem(Order_Item orderItem) {
+        this.orderItem = orderItem;
+    }
+
+    public Set<Dimensions> getDimensions() {
         return dimensions;
     }
 
-    public void setDimensions(Dimensions dimensions) {
+    public void setDimensions(Set<Dimensions> dimensions) {
         this.dimensions = dimensions;
     }
 
-    public Styles getStyle() {
-        return style;
+    public Set<Styles> getStyles() {
+        return styles;
     }
 
-    public void setStyle(Styles style) {
-        this.style = style;
+    public void setStyles(Set<Styles> styles) {
+        this.styles = styles;
     }
 
     public Types getType() {
@@ -175,11 +189,10 @@ public class Fornitures {
 
     @Override
     public String toString() {
-        return "Forniture [category=" + category + ", cloth=" + cloth + ", code=" + code + ", description="
-                + description + ", dimensions=" + dimensions + ", final_price=" + final_price + ", forniture_id="
-                + forniture_id + ", list_price=" + list_price + ", name=" + name + ", revenue=" + revenue + ", style="
-                + style + ", type=" + type + "]";
+        return "Fornitures [category=" + category + ", cloth=" + cloth + ", code=" + code + ", description="
+                + description + ", dimensions=" + dimensions + ", finalPrice=" + finalPrice + ", forniture_id="
+                + forniture_id + ", listPrice=" + listPrice + ", name=" + name + ", orderItem=" + orderItem
+                + ", revenue=" + revenue + ", styles=" + styles + ", type=" + type + "]";
     }
-    
-    
+
 }

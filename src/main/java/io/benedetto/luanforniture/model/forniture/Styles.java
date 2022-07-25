@@ -21,6 +21,10 @@ public class Styles {
     @NotNull
     private String name;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "forniture_id")
+    private Fornitures fornitures;
+
     public Styles() {}
     
     public Styles(String name) {

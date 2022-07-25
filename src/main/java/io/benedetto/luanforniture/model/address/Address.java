@@ -19,13 +19,13 @@ public class Address {
     private String address_description;
 
     @OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "departament_id")
+    @JoinColumn(name = "department_id")
 	private Department departament;
-
+    
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id")
     private City city;
-
+    
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "suburb_id")
     private Suburb suburb;

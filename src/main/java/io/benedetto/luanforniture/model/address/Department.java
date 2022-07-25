@@ -25,13 +25,10 @@ public class Department {
     private String name;
 
     @OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "city_id")
+	@JoinColumn(name = "capital")
 	private City capital;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(name = "DEPARTMENT_CITIES", 
-               joinColumns = @JoinColumn(name = "department_id"),
-               inverseJoinColumns = @JoinColumn(name = "city_id"))
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<City> cities = new HashSet<>();
 
     public Department() {}

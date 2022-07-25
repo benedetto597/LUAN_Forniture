@@ -19,6 +19,10 @@ public class Suburb {
     @NotNull
     private String name;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "city_id")
+    private City city;
+
     public Suburb() {}
 
     public Suburb(String name) {

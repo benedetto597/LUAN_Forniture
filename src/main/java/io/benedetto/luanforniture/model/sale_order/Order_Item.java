@@ -34,11 +34,8 @@ public class Order_Item {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(name = "ORDER_ITEMS_FORNITURES", 
-               joinColumns = @JoinColumn(name = "order_item_id"),
-               inverseJoinColumns = @JoinColumn(name = "forniture_id"))
-    private Set<Fornitures> forniture = new HashSet<>(); 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderItem", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Fornitures> fornitures = new HashSet<>(); 
         
     public Order_Item() {}
 
@@ -91,7 +88,7 @@ public class Order_Item {
 
     @Override
     public String toString() {
-        return "Order_Item [forniture=" + forniture + ", order=" + order + ", order_item_id=" + order_item_id
+        return "Order_Item [forniture=" + fornitures + ", order=" + order + ", order_item_id=" + order_item_id
                 + ", quantity=" + quantity + ", total_discount=" + total_discount + ", total_price=" + total_price
                 + "]";
     }

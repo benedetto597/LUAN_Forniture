@@ -1,9 +1,12 @@
 package io.benedetto.luanforniture.model.forniture;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -27,6 +30,10 @@ public class Dimensions {
     @NotBlank
     @NotNull
     private Double depth;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "forniture_id")
+    private Fornitures fornitures;
 
     public Dimensions() {}
 

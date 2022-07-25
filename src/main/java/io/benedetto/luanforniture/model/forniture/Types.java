@@ -21,6 +21,10 @@ public class Types {
     @NotNull
     private String name;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "forniture_id")
+    private Fornitures fornitures;
+
     public Types() {}
 
     public Types(String name) {

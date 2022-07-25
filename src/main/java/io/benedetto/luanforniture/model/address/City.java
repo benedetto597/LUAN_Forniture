@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "CITY", 
     uniqueConstraints = {
-        @UniqueConstraint(columnNames = "city_name"),
+        @UniqueConstraint(columnNames = "name"),
     })
 public class City {
     @Id
@@ -22,18 +22,19 @@ public class City {
     @NotBlank
     @Size(max = 30)
     @NotNull
-    private String city_name;
+    private String name;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id")
+    private Department department;
     
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(name = "CITY_SUBURBIA", 
-               joinColumns = @JoinColumn(name = "city_id"),
-               inverseJoinColumns = @JoinColumn(name = "suburb_id"))
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Suburb> suburbia = new HashSet<>();
 
     public City() {}
 
-    public City(String city_name) {
-        this.city_name = city_name;
+    public City(String name) {
+        this.name = name;
     }
 
     public int getId() {
@@ -45,15 +46,15 @@ public class City {
     }
 
     public String getCity_name() {
-        return city_name;
+        return name;
     }
 
     public void setCity_name(String city_name) {
-        this.city_name = city_name;
+        this.name = city_name;
     }
 
     @Override
     public String toString() {
-        return "City{" + "id=" + city_id + ", city_name=" + city_name + '}';
+        return "City{" + "id=" + city_id + ", name=" + name + '}';
     }
 }

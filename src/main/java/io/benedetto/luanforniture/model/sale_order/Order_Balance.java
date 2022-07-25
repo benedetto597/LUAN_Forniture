@@ -5,7 +5,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-import org.hibernate.annotations.Formula;
 
 @Entity
 @Table(name = "ORDER_BALANCE")
@@ -18,7 +17,7 @@ public class Order_Balance {
     @NotBlank
     private Double total_paid;
 
-    @Formula(value = "total_price - total_paid")
+    @NotBlank
     private Double total_unpaid;
 
     @OneToOne(fetch = FetchType.LAZY)

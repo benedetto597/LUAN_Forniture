@@ -41,7 +41,7 @@ public class Order_Suplier {
     private String contact_last_name;
 
     @NotBlank
-    @Size (max = 8)
+    @Size (max = 8, min = 8)
     @NotNull
     private Number contact_phone;
 

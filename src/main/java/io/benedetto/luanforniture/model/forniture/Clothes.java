@@ -1,5 +1,8 @@
 package io.benedetto.luanforniture.model.forniture;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -45,6 +48,9 @@ public class Clothes {
     @Size(max = 7)
     @NotNull
     private String color_hex;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cloth", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Fornitures> fornitures = new HashSet<>();
 
     public Clothes() {}
 

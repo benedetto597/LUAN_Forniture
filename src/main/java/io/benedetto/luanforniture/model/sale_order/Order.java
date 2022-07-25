@@ -32,11 +32,13 @@ public class Order {
 
     @CreationTimestamp
     // @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime created_on;
+    @Column(name = "created_on")
+    private LocalDateTime createdOn;
     
     @UpdateTimestamp
     // @Temporal(TemporalType.TIMESTAMP)
-	private LocalDateTime updated_on;
+    @Column(name = "updated_on")
+	private LocalDateTime updatedOn;
 
     @Enumerated(EnumType.STRING)
     @Size(max = 30)
@@ -44,10 +46,11 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     @Size(max = 30)
-    private EPayment_Method payment_method;
+    @Column(name = "payment_method")
+    private EPayment_Method paymentMethod;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id")
     private User client;
 
     @OneToOne(mappedBy = "order",
@@ -64,10 +67,7 @@ public class Order {
     )
     private Order_Suplier suplier;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(name = "ORDER_ITEMS", 
-               joinColumns = @JoinColumn(name = "order_id"),
-               inverseJoinColumns = @JoinColumn(name = "order_item_id"))
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Order_Item> order_items = new HashSet<>();  
     
     public Order() {}
@@ -75,11 +75,97 @@ public class Order {
     public Order(String code, EStatus status, EPayment_Method payment_method, User client) {
         this.code = code;
         this.status = status;
-        this.payment_method = payment_method;
+        this.paymentMethod = payment_method;
         this.client = client;
     }
 
+    public int getOrder_id() {
+        return order_id;
+    }
 
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
+    }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public LocalDateTime getUpdatedOn() {
+        return updatedOn;
+    }
+
+    public void setUpdatedOn(LocalDateTime updatedOn) {
+        this.updatedOn = updatedOn;
+    }
+
+    public EStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(EStatus status) {
+        this.status = status;
+    }
+
+    public EPayment_Method getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(EPayment_Method paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public User getClient() {
+        return client;
+    }
+
+    public void setClient(User client) {
+        this.client = client;
+    }
+
+    public Order_Balance getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Order_Balance balance) {
+        this.balance = balance;
+    }
+
+    public Order_Suplier getSuplier() {
+        return suplier;
+    }
+
+    public void setSuplier(Order_Suplier suplier) {
+        this.suplier = suplier;
+    }
+
+    public Set<Order_Item> getOrder_items() {
+        return order_items;
+    }
+
+    public void setOrder_items(Set<Order_Item> order_items) {
+        this.order_items = order_items;
+    }
+
+    @Override
+    public String toString() {
+        return "Order [balance=" + balance + ", client=" + client + ", code=" + code + ", createdOn=" + createdOn
+                + ", order_id=" + order_id + ", order_items=" + order_items + ", paymentMethod=" + paymentMethod
+                + ", status=" + status + ", suplier=" + suplier + ", updatedOn=" + updatedOn + "]";
+    }
+
+    
 
 }

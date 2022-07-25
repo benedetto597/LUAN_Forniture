@@ -1,5 +1,8 @@
 package io.benedetto.luanforniture.model.user;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
@@ -13,6 +16,9 @@ public class Role {
   @Enumerated(EnumType.STRING)
   @Size(max = 20)
   private ERole name;
+
+  @ManyToMany(mappedBy = "roles")
+	private Set<User> users = new HashSet<>();
   
   public Role() {
   }
