@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://www.armadilloamarillo.com/wp-content/uploads/spring-boot-ok.png" width=400px"> </img> 
+    <img src="https://qhstaticssl.coohom.com/image/png/1652265316913/A738BB1774DFD69D6F13E1C6C736BE92.png" width=300px"> </img> 
     
 <!-- Encabezado -->
 ## Aplicacion web de venta de muebles
@@ -62,8 +62,23 @@ Recomendaciones de uso segun documentacion oficial:
 * Para colecciones unidireccionales, los **conjuntos o Set (HashSet<>)** son la mejor opción porque generan las **declaraciones SQL más eficientes**. Las **listas o List** unidireccionales son **menos eficientes** que una asociación @ManyToOne.
 * En resumen **mappedBy** define el objeto al que pertenece la relación y es obligatorio si la relación es bidireccional.  Por lo que hace que no solo se pueda acceder a la información del usuarios desde el email, sino que también podamos hacerlo en sentido contrario. Exista o no exista la definición expresa del @JoinColumn.
 
+### Producto
 1. Tipos de muebles
-Alacena,Cabecera,Cama cuna,Cuna,Centro,Chifonier,Chinero,Closet,Comedor,Cómoda,Gavetero,Litera,Mueble aereo,Recamara,Ropero
+   * Alacena
+   * Cabecera
+   * Cama cuna
+   * Cuna
+   * Centro
+   * Chifonier
+   * Chinero
+   * Closet
+   * Comedor
+   * Cómoda
+   * Gavetero
+   * Litera
+   * Mueble aereo
+   * Recamara
+   * Ropero
 
 ### Frontend
 ## Deploy en Heroku
