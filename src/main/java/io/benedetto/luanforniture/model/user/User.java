@@ -17,7 +17,7 @@ import io.benedetto.luanforniture.model.sale_order.Order;
 @Entity
 @Table(name = "USER", 
     uniqueConstraints = {
-        @UniqueConstraint(columnNames = "user_name"),
+        @UniqueConstraint(columnNames = "username"),
         @UniqueConstraint(columnNames = "email")
     })
 public class User {
@@ -29,7 +29,7 @@ public class User {
     @NotBlank
     @Size(max = 20)
     @NotNull
-    private String user_name;
+    private String username;
 
     @NotBlank
     @Size(max = 20)
@@ -69,7 +69,7 @@ public class User {
 
     public User(String name, String user_name, String last_name, String email, String password, LocalDateTime created_on, LocalDateTime updated_on) {
         this.name = name;
-        this.user_name = user_name;
+        this.username = user_name;
         this.last_name = last_name;
         this.email = email;
         this.password = password;
@@ -86,11 +86,11 @@ public class User {
     }
 
     public String getUser_name() {
-        return user_name;
+        return username;
     }
 
     public void setUser_name(String user_name) {
-        this.user_name = user_name;
+        this.username = user_name;
     }
 
     public String getName() {
@@ -153,7 +153,7 @@ public class User {
     public String toString() {
         return "User [created_on=" + created_on + ", email=" + email + ", last_name=" + last_name + ", name=" + name
                 + ", password=" + password + ", roles=" + roles + ", updated_on=" + updated_on + ", user_id=" + user_id
-                + ", user_name=" + user_name + "]";
+                + ", user_name=" + username + "]";
     }
 
     

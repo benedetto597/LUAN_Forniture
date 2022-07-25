@@ -9,9 +9,7 @@ import io.benedetto.luanforniture.model.sale_order.Order;
 @Repository
 public interface RepoOrder extends JpaRepository<Order, Integer> {
 
-    Optional<Order> findByName(String name);
     Optional<Order> findByCode(String code);
-    Boolean existsByName(String name);
     Boolean existsByCode(String code);
     public Order findById(int id);
     

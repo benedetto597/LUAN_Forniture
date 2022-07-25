@@ -10,7 +10,7 @@ import io.benedetto.luanforniture.model.address.Department;
 public interface RepoDepartment extends JpaRepository<Department, Integer> {
 
     Optional<Department> findByName(String name);
-    Boolean existByName(String name);
+    Boolean existsByName(String name);
     public Department findById(int id);
 
 }

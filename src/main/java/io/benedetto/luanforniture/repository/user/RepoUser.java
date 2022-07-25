@@ -10,7 +10,7 @@ import io.benedetto.luanforniture.model.user.User;
 public interface RepoUser extends JpaRepository<User, Integer> {
 
     Optional<User> findByUsername(String username);
-    Boolean existByUsername(String username);
+    Boolean existsByUsername(String username);
     Boolean existsByEmail(String email);
     public User findById(int id);
 

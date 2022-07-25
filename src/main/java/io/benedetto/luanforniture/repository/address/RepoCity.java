@@ -10,7 +10,7 @@ import io.benedetto.luanforniture.model.address.City;
 public interface RepoCity extends JpaRepository<City, Integer> {
 
     Optional<City> findByName(String name);
-    Boolean existByName(String name);
+    Boolean existsByName(String name);
     public City findById(int id);
     
 }

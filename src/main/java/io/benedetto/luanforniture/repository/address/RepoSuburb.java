@@ -10,7 +10,7 @@ import io.benedetto.luanforniture.model.address.Suburb;
 public interface RepoSuburb extends JpaRepository<Suburb, Integer> {
 
     Optional<Suburb> findByName(String name);
-    Boolean existByName(String name);
+    Boolean existsByName(String name);
     public Suburb findById(int id);
 
 }

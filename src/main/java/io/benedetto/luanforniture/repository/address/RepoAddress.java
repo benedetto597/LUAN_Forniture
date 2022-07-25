@@ -5,14 +5,17 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import io.benedetto.luanforniture.model.address.Address;
+import io.benedetto.luanforniture.model.address.City;
+import io.benedetto.luanforniture.model.address.Department;
+import io.benedetto.luanforniture.model.address.Suburb;
 
 @Repository
 public interface RepoAddress extends JpaRepository<Address, Integer> {
 
-    Optional<Address> findByCityName(String name);
-    Optional<Address> findByDepartmentName(String name);
-    Optional<Address> findBySuburbName(String name);
+    Optional<Address> findByCity(City city);
+    Optional<Address> findByDepartment(Department department);
+    Optional<Address> findBySuburb(Suburb suburb);
     
-    Boolean existById(int id);
+    Boolean existsById(int id);
     public Address findById(int id);
 }

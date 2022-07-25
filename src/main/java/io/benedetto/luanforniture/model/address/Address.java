@@ -20,7 +20,7 @@ public class Address {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
-	private Department departament;
+	private Department department;
     
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id")
@@ -32,9 +32,9 @@ public class Address {
 
     public Address() {}
 
-    public Address(String address_description, Department departament, City city, Suburb suburb) {
+    public Address(String address_description, Department department, City city, Suburb suburb) {
         this.address_description = address_description;
-        this.departament = departament;
+        this.department = department;
         this.city = city;
         this.suburb = suburb;
     }
@@ -55,12 +55,12 @@ public class Address {
         this.address_description = address_description;
     }
 
-    public Department getDepartament() {
-        return departament;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartament(Department departament) {
-        this.departament = departament;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public City getCity() {
@@ -82,7 +82,7 @@ public class Address {
     @Override
     public String toString() {
         return "Address [address_description=" + address_description + ", address_id=" + address_id + ", city=" + city
-                + ", departament=" + departament + ", suburb=" + suburb + "]";
+                + ", department=" + department + ", suburb=" + suburb + "]";
     }
 
 }
